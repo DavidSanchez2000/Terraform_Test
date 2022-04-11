@@ -47,7 +47,7 @@ resource "google_compute_network" "private_network" {
 # Reserve global internal address range for the peering
 resource "google_compute_global_address" "private_ip_address" {
     #provider = var.provider
-    name          = "private_ip_addres"
+    name          = "dabase-private-connection"
     purpose       = "VPC_PEERING"
     address_type  = "INTERNAL"
     ip_version    = "IPV4"
