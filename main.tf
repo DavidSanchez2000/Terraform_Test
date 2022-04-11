@@ -113,3 +113,4 @@ resource "google_sql_user" "database_user" {
  instance = google_sql_database_instance.database_primary.name  #google_sql_database_instance.database_primary.name
  password = var.database_password 
 }
+
