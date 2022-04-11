@@ -19,6 +19,7 @@ terraform {
     }
   }
 }
+
 provider "google" {
     credentials = var.GCP_SERVICES
     project = var.project
