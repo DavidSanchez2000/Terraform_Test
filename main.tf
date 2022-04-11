@@ -81,22 +81,21 @@ resource "google_compute_firewall" "allow_ssh" {
 # ------------------------------------------------------------------------------
 # CREATE DATABASE INSTANCE WITH PRIVATE IP
 # ------------------------------------------------------------------------------
-
+/*
 resource "google_sql_database" "database" {
     provider = google-beta
     name = "main"
     instance = google_sql_database_instance.database_primary.name # google_sql_database_instance.database_primary.name
 
 }
-
+*/
 resource "google_sql_database_instance" "database_primary" {
-    #provider = var.provider
+    provider = google-beta
     name = "database-primary"
     region = var.region
-    database_version = "POSTGRES_13"
-    depends_on = [
-    google_service_networking_connection.private_vpc_connection#google_service_networking_connection.private_vpc_connection
-    ]
+    database_version = "POSTGRES_13" #"MYSQL_5_7"
+    depends_on = [google_service_networking_connection.private_vpc_connection]#google_service_networking_connection.private_vpc_connection
+
     settings {
         tier = "db-f1-micro"
         availability_type = "REGIONAL"
