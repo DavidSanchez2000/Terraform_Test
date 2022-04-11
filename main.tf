@@ -68,7 +68,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 resource "google_compute_firewall" "allow_ssh" {
   name        = "allow-ssh"
   network     = google_compute_network.private_network.name
-  direction   = "INGRESS"
+  #direction   = "INGRESS"
   allow {
     protocol = "tcp"
     ports    = ["22"]
