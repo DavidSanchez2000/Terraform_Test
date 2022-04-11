@@ -37,7 +37,7 @@ provider "google-beta" {
 }
 
 resource "google_compute_network" "private_network" {
-    #provider = var.provider
+    provider = google-beta
     name     = var.network_name
     routing_mode = "GLOBAL"
     auto_create_subnetworks = "false"
@@ -46,20 +46,20 @@ resource "google_compute_network" "private_network" {
 
 # Reserve global internal address range for the peering
 resource "google_compute_global_address" "private_ip_address" {
-    #provider = var.provider
+    provider = google-beta
     name          = "dabase-private-connection"
     purpose       = "VPC_PEERING"
     address_type  = "INTERNAL"
     ip_version    = "IPV4"
     prefix_length = 20
-    network       =  google_compute_network.private_network.self_link #google_compute_network.private_network.self_link
+    network       =  google_compute_network.private_network.id #google_compute_network.private_network.self_link
 }
 
 
 # Establish VPC network peering connection using the reserved address range
 resource "google_service_networking_connection" "private_vpc_connection" {
-   #provider = var.provider
-    network                 = google_compute_network.private_network.self_link #google_compute_network.private_network.self_link
+    provider = google-beta
+    network                 = google_compute_network.private_network.id #google_compute_network.private_network.self_link
     service                 = "servicenetworking.googleapis.com"
     reserved_peering_ranges =[google_compute_global_address.private_ip_address.name]  #[google_compute_global_address.private_ip_address.name]
 }
@@ -83,7 +83,7 @@ resource "google_compute_firewall" "allow_ssh" {
 # ------------------------------------------------------------------------------
 
 resource "google_sql_database" "database" {
-    #provider = var.provider
+    provider = google-beta
     name = "main"
     instance = google_sql_database_instance.database_primary.name # google_sql_database_instance.database_primary.name
 
@@ -103,7 +103,7 @@ resource "google_sql_database_instance" "database_primary" {
         disk_size = 10
         ip_configuration{
             ipv4_enabled = false
-            private_network = google_compute_network.private_network.self_link  #google_compute_network.private_network.self_link
+            private_network = google_compute_network.private_network.id  #google_compute_network.private_network.self_link
         }
         
     }
