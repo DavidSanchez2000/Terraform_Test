@@ -74,6 +74,7 @@ resource "google_compute_firewall" "allow_ssh" {
     ports    = ["22"]
   }
   target_tags = ["ssh-enabled"]
+  source_tags = ["web"]
 
 }
 
