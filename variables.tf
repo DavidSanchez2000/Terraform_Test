@@ -32,7 +32,7 @@ variable "zone" {
 }
 
 variable "network_name" {
-    default = "database_vpc"
+    default = "database-vpc"
   
 }
 
