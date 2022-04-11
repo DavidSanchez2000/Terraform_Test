@@ -2,22 +2,20 @@ variable "GCP_SERVICES" {
   
 }
 
-/*
-variable "backend_hostname" {
+variable "hostname" {
     default = "app.terraform.io"
   
 }
 
-variable "backend_organization" {
-    default = "med-endabank"
+variable "organization" {
+    default = "Terraform_Database"
   
 }
 
-variable "backend_name_workspace" {
-    default = "cloud-environmet"
+variable "name_workspace" {
+    default = "Terraform_Test"
   
 }
-*/
 variable "project" {
     default = "iac-challenge-345123"
   

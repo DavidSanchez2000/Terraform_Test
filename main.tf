@@ -11,14 +11,15 @@
 
 terraform {
   backend "remote"{
-      hostname = "app.terraform.io"
-      organization = "Terraform_Database"
+      hostname = var.hostname
+      organization = var.organization
 
     workspaces {
-      name = "test-database"
+      name = var.name_workspace
     }
   }
 }
+
 
 provider "google" {
     credentials = var.GCP_SERVICES
