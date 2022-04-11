@@ -34,6 +34,7 @@ provider "google-beta" {
     zone = var.zone
   
 }
+
 resource "google_compute_network" "private_network" {
     #provider = var.provider
     name     = var.network_name
